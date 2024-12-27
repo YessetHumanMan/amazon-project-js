@@ -75,7 +75,13 @@ const addBtn = document.querySelectorAll(".add-to-cart-button");
 	    quantity: 1
            })
         	}
-console.log(cart)
+	let quantityCart = 0;
+	cart.forEach((item) => {
+	  quantityCart += item.quantity
+        });
+        document.querySelector(".cart-quantity").innerHTML = quantityCart
+// console.log(quantityCart)
+// console.log(cart)
 
 })
 })
