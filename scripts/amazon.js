@@ -1,12 +1,10 @@
-
-let productHTML = '';
-const productsGrid = document.querySelector(".products-grid")
-
+let productsHTML = '';
+document.querySelector(".products-grid").innerHTML = productsHTML;
 products.forEach((product) => {
-
-   productHTML += `<div class="product-container">
+	productsHTML += `<div class="product-container">
           <div class="product-image-container">
-            <img class="product-image" src="${product.image}">
+            <img class="product-image"
+              src="${product.image}">
           </div>
 
           <div class="product-name limit-text-to-2-lines">
@@ -14,19 +12,20 @@ products.forEach((product) => {
           </div>
 
           <div class="product-rating-container">
-            <img class="product-rating-stars" src="images/ratings/rating-${product.rating.stars * 10}.png">
+            <img class="product-rating-stars"
+              src="images/ratings/rating-${product.rating.stars * 10}.png">
             <div class="product-rating-count link-primary">
               ${product.rating.count}
             </div>
           </div>
 
           <div class="product-price">
-           $${(product.priceCents / 100).toFixed(2)}
+            $${(product.priceCents / 100).toFixed(2)}
           </div>
 
           <div class="product-quantity-container">
             <select>
-              <option selected="" value="1">1</option>
+              <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
@@ -49,8 +48,8 @@ products.forEach((product) => {
           <button class="add-to-cart-button button-primary">
             Add to Cart
           </button>
-        </div>`
-productsGrid.innerHTML = productHTML
+          </div>`
 
-})
+document.querySelector(".products-grid").innerHTML = productsHTML;
 
+});
