@@ -1,4 +1,4 @@
-import { cart } from "../data/cart.js"
+import { cart, addToCart } from "../data/cart.js"
 import { products } from "../data/products.js"
 let productsHTML = '';
 document.querySelector(".products-grid").innerHTML = productsHTML;
@@ -59,30 +59,11 @@ document.querySelector(".products-grid").innerHTML = productsHTML;
 
 const addBtn = document.querySelectorAll(".add-to-cart-button");
 
-function addToCart(productId) {
-	let machingItem
-	cart.forEach((item) => {
-	if (productId === item.productId) {
-	  machingItem = item
-      }
-	});
-
-	if (machingItem) {
-	  machingItem += 1
-     } else {
-	 cart.push({
-    	 productId: productId,
-	 quantity: 1
-      })
-     }
-
-
-};
 
 function updateQuantityCart() {
 	let quantityCart = 0;
-	cart.forEach((item) => {
-	  quantityCart += item.quantity
+	cart.forEach((cartItem) => {
+	  quantityCart += cartItem.quantity
      });
 	document.querySelector('.cart-quantity').innerHTML = quantityCart
 }
