@@ -1,3 +1,6 @@
+import { cart } from "../data/cart.js"
+
+
 let productsHTML = '';
 document.querySelector(".products-grid").innerHTML = productsHTML;
 products.forEach((product) => {
