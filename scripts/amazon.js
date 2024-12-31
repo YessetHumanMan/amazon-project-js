@@ -1,4 +1,5 @@
-
+import { cart , addCartItem } from '../data/cart.js';
+import { products } from '../data/products.js'
 let productHTML = '';
 const productsGrid = document.querySelector(".products-grid")
 
@@ -23,7 +24,7 @@ products.forEach((product) => {
           <div class="product-price">
            $${(product.priceCents / 100).toFixed(2)}
           </div>
-
+ 
           <div class="product-quantity-container">
             <select>
               <option selected="" value="1">1</option>
@@ -46,7 +47,7 @@ products.forEach((product) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary" data-product-id=${product.id}>
             Add to Cart
           </button>
         </div>`
@@ -54,3 +55,12 @@ productsGrid.innerHTML = productHTML
 
 })
 
+
+document.querySelectorAll('.add-to-cart-button')
+ .forEach((button) => {
+	button.addEventListener("click", () => {
+	const productId = button.dataset.productId 
+       // addCartItem(productId)	
+       console.log(productId)
+	})
+ })
