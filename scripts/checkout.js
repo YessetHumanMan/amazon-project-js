@@ -3,6 +3,9 @@ import {products} from "../data/products.js";
 import {moneyToFixed} from "./utils/money.js";
 import { removeCartItem } from "../data/cart.js"
 let cartItemHTML = ""
+const today = dayjs()
+const deliveryDay = today.add(7,'days');
+console.log(deliveryDay.format('dddd, MMMM D'))
 
 cart.forEach((cartItem) => {
         const productId = cartItem.productId;
