@@ -3,7 +3,9 @@ import {products} from "../data/products.js";
 import {moneyToFixed} from "./utils/money.js";
 import { removeCartItem } from "../data/cart.js"
 import { deliveryOptions } from "../data/deliveryOptions.js";
-import { updateDeliveryOptions } from "../data/cart.js"
+import { updateDeliveryOptions } from "../data/cart.js";
+
+function renderOrderSummary() {
 let cartItemHTML = ""
 
 cart.forEach((cartItem) => {
@@ -110,8 +112,11 @@ document.querySelectorAll(".delivery-option")
      .forEach((element) => {
 	element.addEventListener('click', () => {
 	 const { productId, deliveryOptionId} = element.dataset
-         updateDeliveryOptions(productId, deliveryOptionId)
+         updateDeliveryOptions(productId, deliveryOptionId);
+	 renderOrderSummary()
        })
 
     })
- 	
+ }
+
+renderOrderSummary()	
