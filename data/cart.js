@@ -53,14 +53,24 @@ export function removeCartItem(productId) {
 	saveToStorage();
 }
 
-export function updateDeliveryOptions(productId, deliveryOptionsId) {
+export function updateDeliveryOptions(productId, deliveryOptionId) {
 let machingItem
 cart.forEach((cartItem) => {
   if (productId === cartItem.productId) {
 	machingItem = cartItem
   }
 })
-	machingItem.deliveryOptionsId = deliveryOptionsId
+	machingItem.deliveryOptionId = deliveryOptionId
 	saveToStorage()
 }
 
+//export function updateDeliveryOptions(productId,deliveryOptionId) {
+//	let machingItem
+ //    cart.forEach((cartItem) => {
+//	if (productId === cartItem.deliveryOptionId) {
+//	machingItem = cartItem
+ // }	
+ // });
+ // deliveryOptionId = deliveryOptionId
+ //  saveToStorage()
+//}
