@@ -41,16 +41,31 @@ export function addToCart(productId) {
 	saveToStorage()
 };
 
-export function removeCartItem(productId) {
-	const newCart = [];
-   cart.forEach((cartItem) => {
-	if (cartItem.productId !== productId) {
-	  newCart.push(cartItem)
-	}
-   })
-	cart = newCart
+//export function removeCartItem(productId) {
+//	const newCart = [];
+//   cart.forEach((cartItem) => {
+//	if (cartItem.productId !== productId) {
+//	  newCart.push(cartItem)
+//	}
+//  })
+//	cart = newCart
 
-	saveToStorage();
+//	saveToStorage();
+// }
+
+export function removeCartItem(productId) {
+  cart = cart.map(cartItem => {
+    if (cartItem.productId === productId) {
+      if (cartItem.quantity > 1) {
+        return { ...cartItem, quantity: cartItem.quantity - 1 };
+      }
+      // Если количество равно 1, товар будет удален
+      return null;
+    }
+    return cartItem;
+  }).filter(cartItem => cartItem !== null);
+
+  saveToStorage();
 }
 
 export function updateDeliveryOptions(productId, deliveryOptionId) {

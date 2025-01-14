@@ -97,15 +97,33 @@ return html
 document.querySelector(".order-summary").innerHTML = cartItemHTML
 
 document.querySelectorAll(".delete-quantity-link")
- .forEach((link) => {
+  .forEach((link) => {
     link.addEventListener("click", () => {
-	const productId = link.dataset.productId
-        removeCartItem(productId)
-	const container = document.querySelector(`.js-cart-item-${productId}`);
-	container.remove()
-	    console.log(container)
-    })
- })
+      const productId = link.dataset.productId;
+      removeCartItem(productId);
+
+      const container = document.querySelector(`.js-cart-item-${productId}`);
+      const updatedItem = cart.find(cartItem => cartItem.productId === productId);
+
+      if (updatedItem) {
+        const quantityLabel = container.querySelector(".quantity-label");
+        quantityLabel.textContent = updatedItem.quantity; // Обновить количество в UI
+      } else {
+        container.remove(); // Удалить товар из DOM
+      }
+    });
+  });
+
+// document.querySelectorAll(".delete-quantity-link")
+// .forEach((link) => {
+//    link.addEventListener("click", () => {
+//	const productId = link.dataset.productId
+ //       removeCartItem(productId)
+//	const container = document.querySelector(`.js-cart-item-${productId}`);
+//	container.remove()
+//	    console.log(container)
+ //   })
+//  })
 
 document.querySelectorAll(".delivery-option")
      .forEach((element) => {
