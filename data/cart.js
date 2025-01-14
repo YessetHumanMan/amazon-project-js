@@ -30,7 +30,7 @@ export function addToCart(productId) {
 	});
 
 	if (machingItem) {
-	  machingItem += 1
+	  machingItem.quantity += 1
      } else {
 	 cart.push({
     	 productId: productId,
@@ -42,7 +42,7 @@ export function addToCart(productId) {
 };
 
 export function removeCartItem(productId) {
-	let newCart = [];
+	const newCart = [];
    cart.forEach((cartItem) => {
 	if (cartItem.productId !== productId) {
 	  newCart.push(cartItem)
