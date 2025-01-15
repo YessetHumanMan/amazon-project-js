@@ -4,6 +4,7 @@ import {moneyToFixed} from "./../utils/money.js";
 import { deliveryOptions } from "../../data/deliveryOptions.js";
 import { getProduct } from "../../data/products.js"
 import { getDeliveryOption } from  "../../data/deliveryOptions.js"
+import { renderPaymantSummary } from "./paymantSummary.js"
 export function renderOrderSummary() {
 let cartItemHTML = ""
 
@@ -66,7 +67,7 @@ cart.forEach((cartItem) => {
           </div>`
 });
 
-function deliveryOptionsHTML(machingProduct, cartItem) {
+ function deliveryOptionsHTML(machingProduct, cartItem) {
 	let html = '';
 	deliveryOptions.forEach((deliveryOption) => {
         const today = dayjs();
@@ -96,41 +97,42 @@ return html
 
 document.querySelector(".order-summary").innerHTML = cartItemHTML
 
-document.querySelectorAll(".delete-quantity-link")
-  .forEach((link) => {
-    link.addEventListener("click", () => {
-      const productId = link.dataset.productId;
-      removeCartItem(productId);
-
-      const container = document.querySelector(`.js-cart-item-${productId}`);
-      const updatedItem = cart.find(cartItem => cartItem.productId === productId);
-
-      if (updatedItem) {
-        const quantityLabel = container.querySelector(".quantity-label");
-        quantityLabel.textContent = updatedItem.quantity; // Обновить количество в UI
-      } else {
-        container.remove(); // Удалить товар из DOM
-      }
-    });
-  });
-
 // document.querySelectorAll(".delete-quantity-link")
-// .forEach((link) => {
-//    link.addEventListener("click", () => {
-//	const productId = link.dataset.productId
- //       removeCartItem(productId)
-//	const container = document.querySelector(`.js-cart-item-${productId}`);
-//	container.remove()
-//	    console.log(container)
- //   })
-//  })
+ // .forEach((link) => {
+  //  link.addEventListener("click", () => {
+  //    const productId = link.dataset.productId;
+ //     removeCartItem(productId);
+//
+  //    const container = document.querySelector(`.js-cart-item-${productId}`);
+ //     const updatedItem = cart.find(cartItem => cartItem.productId === productId);
+//
+ //     if (updatedItem) {
+ //       const quantityLabel = container.querySelector(".quantity-label");
+ //       quantityLabel.textContent = updatedItem.quantity; // Обновить количество в UI
+ //     } else {
+ //       container.remove(); // Удалить товар из DOM
+ //     }
+ //   });
+ // });
+
+ document.querySelectorAll(".delete-quantity-link")
+ .forEach((link) => {
+    link.addEventListener("click", () => {
+	const productId = link.dataset.productId
+       removeCartItem(productId)
+	const container = document.querySelector(`.js-cart-item-${productId}`);
+	container.remove()
+	renderPaymantSummary()
+   })
+ })
 
 document.querySelectorAll(".delivery-option")
      .forEach((element) => {
 	element.addEventListener('click', () => {
 	 const { productId, deliveryOptionId} = element.dataset
          updateDeliveryOptions(productId, deliveryOptionId);
-	 renderOrderSummary()
+	 renderOrderSummary();
+	 renderPaymantSummary()
        })
 
     })
