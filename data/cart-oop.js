@@ -1,6 +1,6 @@
 const cart = {
 	cartItem: undefined,
-
+init() {
 	 this.cartItem = JSON.parse(localStorage.getItem("cart-oop"))
 
 if (!this.cartItem) {
@@ -16,11 +16,12 @@ if (!this.cartItem) {
  	 deliveryOptionId: "2"
 	}
 ]; 
+}
 },
 
  saveToStorage() {
 	localStorage.setItem("cart-oop", JSON.stringify(this.cartItem))
-};
+},
 
  addToCart(productId) {
 	let machingItem
@@ -40,7 +41,7 @@ if (!this.cartItem) {
       })
      }
 	this.saveToStorage()
-};
+},
 
 
  removeCartItem(productId) {
@@ -56,7 +57,7 @@ if (!this.cartItem) {
   }).filter(cartItem => cartItem !== null);
 
   this.saveToStorage();
-}
+},
 
 
 updateDeliveryOptions(productId, deliveryOptionId) {
@@ -68,8 +69,8 @@ this.cartItem.forEach((cartItem) => {
 })
 	machingItem.deliveryOptionId = deliveryOptionId
 	this.saveToStorage()
-}
+},
 
 }
-
+cart.init()
 console.log(cart)
