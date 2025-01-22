@@ -1,8 +1,9 @@
+function Cart(localStorageKey) {
 const cart = {
 
   cartItem: undefined,
 init () {
-  let cart = JSON.parse(localStorage.getItem("cart-oop"))
+  let cart = JSON.parse(localStorage.getItem(localStorageKey))
 
 if (!this.cartItem) {
   this.cartItem = [
@@ -22,7 +23,7 @@ if (!this.cartItem) {
 },
 	
  saveToStorage() {
-	localStorage.setItem("cart-oop", JSON.stringify(cart))
+	localStorage.setItem(localStorageKey, JSON.stringify(cart))
 },
 
  addToCart(productId) {
@@ -83,9 +84,13 @@ this.cartItem.forEach((cartItem) => {
 	saveToStorage()
 }
 
+}
+cart.init()
+return cart
 
 }
-
+const cart = Cart("cart-oop")
 console.log(cart)
-cart.init()
 
+const businessCart = Cart("business-cart")
+console.log(businessCart)
