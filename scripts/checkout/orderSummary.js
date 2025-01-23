@@ -42,7 +42,7 @@ cart.forEach((cartItem) => {
                   ${machingProduct.name}
                 </div>
                 <div class="product-price">
-                  $${moneyToFixed(machingProduct.priceCents)}
+                  $${machingProduct.getPrice()}
                 </div>
                 <div class="product-quantity">
                   <span>
