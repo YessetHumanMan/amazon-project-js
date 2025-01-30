@@ -1,6 +1,9 @@
 import { cart, addToCart } from "../data/cart.js"
-import { products } from "../data/products.js";
+import { products, loadProducts } from "../data/products.js";
 import { moneyToFixed } from "./utils/money.js"
+
+loadProducts(renderProductsGrid)
+function renderProductsGrid() {
 let productsHTML = '';
 document.querySelector(".products-grid").innerHTML = productsHTML;
 products.forEach((product) => {
@@ -81,4 +84,4 @@ function updateQuantityCart() {
    
 })
 })
-
+}
