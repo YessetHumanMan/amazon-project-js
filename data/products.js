@@ -81,6 +81,9 @@ const tshirt = new Clothing({
 
 console.log(tshirt.getPrice())
 
+let products = [];
+
+/*
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -747,3 +750,4 @@ export const products = [
   return new Product(productDetails)
 
 })
+*/
