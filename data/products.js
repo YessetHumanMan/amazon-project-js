@@ -61,7 +61,21 @@ extraInfoHTML() {
 
 }
 
-
+export function loadProductsFetch() { 
+const promise = fetch("https://supersimplebackend.dev/products").then((response) => {
+ // console.log(response)
+ return response.json()
+}).then((productData) => {
+  products = productData.map((productDetails) => {
+  if (productDetails === "clothing") {
+    return new Clothing(productDetails)
+  }
+    return new Product(productDetails)
+})
+})
+return promise
+}
+loadProductsFetch()
 export let products = [];
 export function loadProducts(fun) {
 const xhr = new XMLHttpRequest
